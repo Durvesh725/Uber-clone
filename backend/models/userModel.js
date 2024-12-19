@@ -4,14 +4,16 @@ const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
     fullname:{
-        type: String,
-        required: true,
-        minlength: [3, 'First name must be atleast 3 characters long'],
-    },
-    lastname:{
-        type: String,
-        // required: true,
-        minlength: [3, 'Last name must be atleast 3 characters long'],
+        firstname: {
+            type: String,
+            required: true,
+            minlength: [3, 'First name must be atleast 3 characters long'],
+        }, 
+        lastname:{
+            type: String,
+            // required: true,
+            minlength: [3, 'Last name must be atleast 3 characters long'],
+        },
     },
     email:{
         type: String,
