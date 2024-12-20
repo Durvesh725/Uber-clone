@@ -10,7 +10,7 @@ module.exports.registerUser = async (req, res, next) => {
   }
 
   const { fullname, email, password } = req.body;
-  
+
   const isUserAlreadyRegistered = await userModel.findOne({ email });
   if (isUserAlreadyRegistered) {
     return res.status(400).json({ message: "Email already registered" });
@@ -57,8 +57,8 @@ module.exports.getUserProfile = async (req, res, next) => {
 };
 
 module.exports.logoutUser = async (req, res, next) => {
-  res.clearCookie("token");
   const token = req.cookies.token || req.header.authorization.split(" ")[1];
   await blacklistTokenModel.create({ token });
+  res.clearCookie("token");
   res.status(200).json({ message: "Logged out successfully" });
 };
