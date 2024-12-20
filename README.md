@@ -176,3 +176,88 @@ Response Body:
   "error": "Error message"
 }
 ```
+
+## /users/profile
+
+### Description
+This endpoint is used to get the profile of the authenticated user.
+
+### Method
+GET
+
+### Headers
+- `Authorization`: Bearer token (required)
+
+### Responses
+
+#### Success
+- **Status Code**: 200 OK
+- **Response Body**:
+  ```json
+  {
+    "_id": "user_id",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+  ```
+
+#### Error
+
+- **Status Code**: 401 Unauthorized
+- **Response Body**:
+  ```json
+  {
+    "message": "Unauthorized"
+  }
+  ```
+
+- **Status Code**: 500 Internal Server Error
+- **Response Body**:
+  ```json
+  {
+    "error": "Error message"
+  }
+  ```
+
+## /users/logout
+
+### Description
+This endpoint is used to log out the authenticated user. Also backlists the token provided in cookie or header
+
+### Method
+GET
+
+### Headers
+- `Authorization`: Bearer token (required)
+
+### Responses
+
+#### Success
+- **Status Code**: 200 OK
+- **Response Body**:
+  ```json
+  {
+    "message": "Logged out successfully"
+  }
+  ```
+
+#### Error
+
+- **Status Code**: 401 Unauthorized
+- **Response Body**:
+  ```json
+  {
+    "message": "Unauthorized"
+  }
+  ```
+
+- **Status Code**: 500 Internal Server Error
+- **Response Body**:
+  ```json
+  {
+    "error": "Error message"
+  }
+  ```
