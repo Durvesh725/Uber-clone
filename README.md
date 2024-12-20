@@ -89,3 +89,90 @@ Response Body:
   "error": "Error message"
 }
 ```
+
+## /users/login
+
+### Description
+
+This endpoint is used to log in an existing user.
+
+### Method
+
+POST
+
+### Request Body
+
+The request body should be a JSON object with the following fields:
+
+- `email`: A string representing a valid email address (required)
+- `password`: A string with a minimum length of 6 characters (required)
+
+Example:
+
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+### Responses
+
+#### Success
+
+Status Code: 200 OK
+Response Body:
+
+```json
+{
+  "token": "jwt_token",
+  "user": {
+    "_id": "user_id",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+```
+
+#### Error
+
+Status Code: 400 Bad Request
+Response Body:
+
+```json
+{
+  "errors": [
+    {
+      "msg": "Invalid email",
+      "param": "email",
+      "location": "body"
+    },
+    {
+      "msg": "Password must be at least 6 characters long",
+      "param": "password",
+      "location": "body"
+    }
+  ]
+}
+```
+
+Status Code: 401 Unauthorized
+Response Body:
+
+```json
+{
+  "message": "Invalid email or password"
+}
+```
+
+Status Code: 500 Internal Server Error
+Response Body:
+
+```json
+{
+  "error": "Error message"
+}
+```
